@@ -1,14 +1,16 @@
-using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
 using Chat.DAL;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http.Connections;
-using Microsoft.EntityFrameworkCore;
 
 namespace Chat.Web;
-public class Startup(IConfiguration configuration)
+public class Startup
 {
-    public IConfiguration Configuration { get; } = configuration;
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
 
+    public IConfiguration Configuration { get; }
+    
     public void ConfigureServices(IServiceCollection services)
     {
         var connectionString = Environment.GetEnvironmentVariable("SQLSERVER_CONNECTION_STRING") ?? Configuration.GetConnectionString("ConnectionString");

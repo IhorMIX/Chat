@@ -13,10 +13,12 @@ public class MessageConfiguration : IEntityTypeConfiguration<Message>
 
         builder.HasOne(m => m.ChatRoom)
             .WithMany(c => c.Messages)
-            .HasForeignKey(m => m.ChatRoomId);
+            .HasForeignKey(m => m.ChatRoomId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(m => m.User)
             .WithMany(u => u.Messages)
-            .HasForeignKey(m => m.UserId);
+            .HasForeignKey(m => m.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
