@@ -1,11 +1,11 @@
 using AutoMapper;
-using Chat.BLL.Exception;
+using Chat.BLL.Exceptions;
 using Chat.BLL.Models;
 using Chat.BLL.Service.Interface;
 using Chat.DAL.Entity;
 using Chat.DAL.Repository.Interface;
 
-namespace Chat.BLL.Service;
+namespace Chat.BLL.Services;
 
 public class UserService(IUserRepository userRepository,  IMapper mapper) : IUserService
 {
@@ -30,10 +30,10 @@ public class UserService(IUserRepository userRepository,  IMapper mapper) : IUse
     public async Task DeleteUserAsync(int userId, CancellationToken cancellationToken = default)
     {
         var userDb = await userRepository.GetByIdAsync(userId, cancellationToken);
-        if (userDb is not null)
+        if (userDb is null)
         {
-            await userRepository.DeleteAsync(userDb,cancellationToken);
+            throw new UserNotFoundException($"User with this Id {userId} not found");
         }
-        throw new UserNotFoundException($"User with this Id {userId} not found");
+        await userRepository.DeleteAsync(userDb,cancellationToken);
     }
 }

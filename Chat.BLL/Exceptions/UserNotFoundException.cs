@@ -1,4 +1,4 @@
 using System;
-namespace Chat.BLL.Exception;
+namespace Chat.BLL.Exceptions;
 
 public class UserNotFoundException(string message) : CustomException(message);
