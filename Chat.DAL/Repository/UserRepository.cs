@@ -19,7 +19,7 @@ public class UserRepository(ChatDbContext chatDbContext) : IUserRepository
 
     public async Task<User> CreateAsync(User user, CancellationToken cancellationToken = default)
     {
-        chatDbContext.Users.Add(user);
+        await chatDbContext.Users.AddAsync(user, cancellationToken);
         await chatDbContext.SaveChangesAsync(cancellationToken);
         return user;
     }
