@@ -1,4 +1,4 @@
-namespace Chat.BLL.Service.Interface;
+namespace Chat.BLL.Services.Interface;
 
 public interface IBasicService<TModel> where TModel : class
 {

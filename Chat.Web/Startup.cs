@@ -1,4 +1,4 @@
-using Chat.BLL.Service.Interface;
+using Chat.BLL.Services.Interface;
 using Chat.BLL.Services;
 using Microsoft.EntityFrameworkCore;
 using Chat.DAL;

@@ -1,6 +1,6 @@
 using Chat.BLL.Models;
 
-namespace Chat.BLL.Service.Interface;
+namespace Chat.BLL.Services.Interface;
 
 public interface IUserService : IBasicService<UserModel>
 {

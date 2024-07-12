@@ -1,5 +1,5 @@
 using AutoMapper;
-using Chat.BLL.Service.Interface;
+using Chat.BLL.Services.Interface;
 using Chat.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
