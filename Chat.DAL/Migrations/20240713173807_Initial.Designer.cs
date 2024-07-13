@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chat.DAL.Migrations
 {
     [DbContext(typeof(ChatDbContext))]
-    [Migration("20240710184401_Initial")]
+    [Migration("20240713173807_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -140,13 +140,13 @@ namespace Chat.DAL.Migrations
                     b.HasOne("Chat.DAL.Entity.ChatRoom", null)
                         .WithMany()
                         .HasForeignKey("ChatRoomId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Chat.DAL.Entity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
