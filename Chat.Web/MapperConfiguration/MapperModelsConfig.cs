@@ -11,7 +11,10 @@ public class MapperModelsConfig : Profile
     {
         CreateMap<User, UserModel>().ReverseMap();
         CreateMap<UserModel, UserViewModel>();
+        
         CreateMap<Message, MessageModel>().ReverseMap();
+        
         CreateMap<ChatRoom, ChatRoomModel>().ReverseMap();
+        CreateMap<ChatRoomModel, ChatRoomViewModel>().ReverseMap();
     }
 }

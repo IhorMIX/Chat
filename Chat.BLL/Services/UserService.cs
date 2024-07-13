@@ -1,7 +1,7 @@
 using AutoMapper;
 using Chat.BLL.Exceptions;
 using Chat.BLL.Models;
-using Chat.BLL.Service.Interface;
+using Chat.BLL.Services.Interface;
 using Chat.DAL.Entity;
 using Chat.DAL.Repository.Interface;
 

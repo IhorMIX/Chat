@@ -1,4 +1,4 @@
-using Chat.BLL.Service.Interface;
+using Chat.BLL.Services.Interface;
 using Chat.BLL.Services;
 using Microsoft.EntityFrameworkCore;
 using Chat.DAL;
@@ -21,6 +21,9 @@ public class Startup
         
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserService, UserService>();
+        
+        services.AddScoped<IChatRoomRepository, ChatRoomRepository>();
+        services.AddScoped<IChatRoomService, ChatRoomService>();
         
         var connectionString = Environment.GetEnvironmentVariable("SQLSERVER_CONNECTION_STRING") ?? Configuration.GetConnectionString("ConnectionString");
 

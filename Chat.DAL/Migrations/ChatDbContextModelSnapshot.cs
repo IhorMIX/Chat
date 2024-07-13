@@ -137,13 +137,13 @@ namespace Chat.DAL.Migrations
                     b.HasOne("Chat.DAL.Entity.ChatRoom", null)
                         .WithMany()
                         .HasForeignKey("ChatRoomId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Chat.DAL.Entity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

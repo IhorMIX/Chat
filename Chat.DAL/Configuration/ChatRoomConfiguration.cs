@@ -23,13 +23,13 @@ public class ChatRoomConfiguration : IEntityTypeConfiguration<ChatRoom>
 
         builder.HasMany(c => c.Users)
             .WithMany(u => u.JoinedChatRooms)
-            .UsingEntity<Dictionary<string, object>>(
+            .UsingEntity(
                 "UserChatRoom",
-                j => j.HasOne<User>()
+                j => j.HasOne(typeof(User))
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Restrict),
-                j => j.HasOne<ChatRoom>()
+                j => j.HasOne(typeof(ChatRoom))
                     .WithMany()
                     .HasForeignKey("ChatRoomId")
                     .OnDelete(DeleteBehavior.Restrict)

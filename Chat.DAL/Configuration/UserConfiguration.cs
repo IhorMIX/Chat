@@ -13,16 +13,16 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.HasMany(u => u.JoinedChatRooms)
             .WithMany(c => c.Users)
-            .UsingEntity<Dictionary<string, object>>(
+            .UsingEntity(
                 "UserChatRoom",
-                j => j.HasOne<ChatRoom>()
+                j => j.HasOne(typeof(ChatRoom))
                     .WithMany()
                     .HasForeignKey("ChatRoomId")
-                    .OnDelete(DeleteBehavior.Restrict),
-                j => j.HasOne<User>()
+                    .OnDelete(DeleteBehavior.Cascade),
+                j => j.HasOne(typeof(User))
                     .WithMany()
                     .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Restrict)
+                    .OnDelete(DeleteBehavior.Cascade)
             );
 
         builder.HasMany(u => u.CreatedChatRooms)
