@@ -24,4 +24,18 @@ public class ChatRoomController(IChatRoomService chatRoomService, IMapper mapper
         await chatRoomService.DeleteChatRoomAsync(userId, chatRoomId, cancellationToken);
         return Ok("ChatRoom was deleted");
     }
+    
+    [HttpPut("join")]
+    public async Task<IActionResult> JoinRoom([FromQuery] int userId, [FromQuery] int chatRoomId, CancellationToken cancellationToken)
+    {
+        await chatRoomService.JoinChatRoomAsync(userId, chatRoomId, cancellationToken);
+        return Ok("User has just became a chatRoomMember");
+    }
+    
+    [HttpPut("leave")]
+    public async Task<IActionResult> LeaveRoom([FromQuery] int userId, [FromQuery] int chatRoomId, CancellationToken cancellationToken)
+    {
+        await chatRoomService.LeaveChatRoomAsync(userId, chatRoomId, cancellationToken);
+        return Ok("User has been leave from chatRoom");
+    }
 }

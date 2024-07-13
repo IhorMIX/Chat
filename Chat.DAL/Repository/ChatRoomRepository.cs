@@ -14,7 +14,7 @@ public class ChatRoomRepository(ChatDbContext chatDbContext) : IChatRoomReposito
     public Task<ChatRoom?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         return chatDbContext.ChatRooms
-            .Include(cr => cr.User) // Включаем связанную сущность User
+            .Include(cr => cr.Users)
             .SingleOrDefaultAsync(cr => cr.Id == id, cancellationToken);
     }
 
