@@ -3,8 +3,8 @@
 
 ## Description
 
-Users should be able to create chats
-Connect to exist and delete if the user created the chat. 
+- Users should be able to create chats.
+- Connect to exist and delete if the user created the chat. 
 
 
 ## Tech Stack
