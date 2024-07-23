@@ -11,7 +11,7 @@ public class ChatRoomConfiguration : IEntityTypeConfiguration<ChatRoom>
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Name).IsRequired();
 
-        builder.HasOne(c => c.User)
+        builder.HasOne(c => c.Creator)
             .WithMany(u => u.CreatedChatRooms)
             .HasForeignKey(c => c.CreatorId)
             .OnDelete(DeleteBehavior.Restrict);
@@ -28,11 +28,11 @@ public class ChatRoomConfiguration : IEntityTypeConfiguration<ChatRoom>
                 j => j.HasOne(typeof(User))
                     .WithMany()
                     .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Restrict),
+                    .OnDelete(DeleteBehavior.Cascade),
                 j => j.HasOne(typeof(ChatRoom))
                     .WithMany()
                     .HasForeignKey("ChatRoomId")
-                    .OnDelete(DeleteBehavior.Restrict)
+                    .OnDelete(DeleteBehavior.Cascade)
             );
     }
 }

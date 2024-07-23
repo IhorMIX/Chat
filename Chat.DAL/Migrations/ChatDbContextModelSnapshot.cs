@@ -104,13 +104,13 @@ namespace Chat.DAL.Migrations
 
             modelBuilder.Entity("Chat.DAL.Entity.ChatRoom", b =>
                 {
-                    b.HasOne("Chat.DAL.Entity.User", "User")
+                    b.HasOne("Chat.DAL.Entity.User", "Creator")
                         .WithMany("CreatedChatRooms")
                         .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Creator");
                 });
 
             modelBuilder.Entity("Chat.DAL.Entity.Message", b =>
@@ -143,7 +143,7 @@ namespace Chat.DAL.Migrations
                     b.HasOne("Chat.DAL.Entity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

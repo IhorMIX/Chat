@@ -3,7 +3,7 @@ namespace Chat.DAL.Entity;
 public class ChatRoom : BaseEntity
 {
     public int CreatorId { get; set; }
-    public User User { get; set; } = null!;
+    public User Creator { get; set; } = null!;
 
     public string Name { get; set; } = null!;
 

@@ -22,13 +22,13 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 j => j.HasOne(typeof(User))
                     .WithMany()
                     .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
+                    .OnDelete(DeleteBehavior.Restrict)
             );
 
         builder.HasMany(u => u.CreatedChatRooms)
-            .WithOne(c => c.User)
+            .WithOne(c => c.Creator)
             .HasForeignKey(c => c.CreatorId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(u => u.Messages)
             .WithOne(m => m.User)

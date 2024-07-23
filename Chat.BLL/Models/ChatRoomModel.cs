@@ -3,8 +3,8 @@ namespace Chat.BLL.Models;
 public class ChatRoomModel : BaseModel
 {
     public int CreatorId { get; set; }
-    public UserModel User { get; set; } = null!;
-
+    
+    public UserModel Creator { get; set; } = null!;
     public string Name { get; set; } = null!;
 
     public IEnumerable<MessageModel> Messages { get; set; } = null!;

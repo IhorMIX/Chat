@@ -4,6 +4,7 @@ using Chat.BLL.Models;
 using Chat.BLL.Services.Interface;
 using Chat.DAL.Entity;
 using Chat.DAL.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace Chat.BLL.Services;
 
@@ -37,5 +38,24 @@ public class MessageService(IMessageRepository messageRepository,IUserRepository
         }, cancellationToken);
 
         return mapper.Map<MessageModel>(messageModel);
+    }
+
+    public async Task<IEnumerable<MessageModel>> GetMessagesAsync(int userId, int chatRoomId, CancellationToken cancellationToken = default)
+    {
+        var userDb = await userRepository.GetByIdAsync(userId, cancellationToken);
+        if (userDb == null)
+        {
+            throw new UserNotFoundException($"User with Id {userId} not found");
+        }
+        
+        var chatRoomDb = await chatRoomRepository.GetByIdAsync(chatRoomId, cancellationToken);
+        if (chatRoomDb == null)
+        {
+            throw new ChatRoomNotFoundException($"ChatRoom with Id {chatRoomId} not found");
+        }
+        
+        var messages = await messageRepository.GetAll().Where(r=>r.ChatRoomId==chatRoomId).ToListAsync(cancellationToken);
+
+        return mapper.Map<IEnumerable<MessageModel>>(messages);
     }
 }
